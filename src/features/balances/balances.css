@@ -1,0 +1,22 @@
+.balances-positions {
+    display: flex;
+}
+
+.balances-modified {
+    display: block;
+    color: #666;
+    font-size: 12px;
+    text-align: right;
+}
+
+.position {
+    flex-grow: 1;
+}
+
+.position-label {
+    color: #666;
+}
+
+.position-amount {
+    display: block;
+}

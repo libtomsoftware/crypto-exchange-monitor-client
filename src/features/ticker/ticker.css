@@ -1,0 +1,21 @@
+.ticker {
+    display: flex;
+}
+
+.currency {
+    flex-grow: 1;
+}
+
+.currency-price {
+    color: #2D4F79;
+    font-size: 1.4em;
+    display: block;
+}
+
+.currency-price.delta-less {
+    color: red;
+}
+
+.currency-price.delta-more {
+    color: green;
+}
