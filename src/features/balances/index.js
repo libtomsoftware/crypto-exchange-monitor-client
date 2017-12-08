@@ -56,7 +56,7 @@ class Balances extends Component {
 
     return (
       <section className="box balances">
-        <div class="balances-positions">
+        <div className="balances-positions">
           {positions && positions.length && positions.map((position, index) => {
             return <Position
                 key={index}

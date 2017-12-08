@@ -4,6 +4,7 @@ import Poller from '../../services/poller';
 import Config from '../../services/config';
 
 import { Currency } from './currency';
+import Chart from '../chart';
 
 import './ticker.css';
 
@@ -52,7 +53,8 @@ class Ticker extends Component {
 
         latest.delta = this.determineDelta(latest, oneBeforeLatest);
 
-        dataUpdate[key] = values;
+        dataUpdate[key] = {};
+        dataUpdate[key].values = values;
         dataUpdate[key].latest = latest;
         this.setState(dataUpdate);
       });
@@ -67,7 +69,8 @@ class Ticker extends Component {
     const currencies = this.state ? Object.keys(this.state) : null;
 
     return (
-      <section className="ticker">
+      <div className="ticker-container">
+        <section className="ticker">
         {currencies && currencies.length && currencies.map((currency, index) => {
             const latest = this.state[currency].latest;
 
@@ -79,7 +82,9 @@ class Ticker extends Component {
                 delta={latest.delta}
               />
         })}
-      </section>
+        </section>
+         <Chart data={this.state && this.state['btcusd'] && this.state['btcusd'].values} />
+      </div>
     );
   }
 }

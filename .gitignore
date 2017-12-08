@@ -9,7 +9,6 @@ logs
 
 # misc
 .DS_Store
-.eslintrc
 npm-debug.log# See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
