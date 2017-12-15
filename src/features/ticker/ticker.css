@@ -19,3 +19,17 @@
 .currency-price.delta-more {
     color: green;
 }
+
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.charts-container .highcharts-container {
+    margin: 0 auto;
+}
+
+.charts-container .highcharts-container:first-child {
+    margin-bottom: 12px;
+}

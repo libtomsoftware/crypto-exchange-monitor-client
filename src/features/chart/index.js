@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Highcharts from 'highcharts';
 import moment from 'moment';
 
 class Chart extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
+        this.chartContainerId = `${props.pair}-chart-container`;
         this.state = {
             data: []
         }
@@ -37,9 +40,9 @@ class Chart extends Component {
     };
 
     createChart() {
-        this.chart = new Highcharts.Chart('chart-container', {
+        this.chart = new Highcharts.Chart(this.chartContainerId, {
             title: {
-                text: 'BTC/USD',
+                text: this.props.pair,
                 style: {
                     fontSize: 14
                 }
@@ -68,7 +71,7 @@ class Chart extends Component {
             },           
             series: [{
                 showInLegend: false,
-                name: 'BTC/USD',
+                name: this.props.pair,
                 data: []
             }]
             
@@ -77,9 +80,14 @@ class Chart extends Component {
 
     render() {
         return <div className="chart">
-            <div id="chart-container"></div>            
+            <div id={this.chartContainerId}></div>            
         </div>
     }
 }
+
+Chart.propTypes = {
+    data: PropTypes.array,
+    pair: PropTypes.string.isRequired
+};
 
 export default Chart;

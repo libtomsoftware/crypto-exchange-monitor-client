@@ -83,7 +83,16 @@ class Ticker extends Component {
               />
         })}
         </section>
-         <Chart data={this.state && this.state['btcusd'] && this.state['btcusd'].values} />
+        <div className="charts-container">
+          {this.state && this.state['btcusd'] && <Chart
+              data={this.state['btcusd'].values}
+              pair="BTC/USD"
+          />}
+          {this.state && this.state['ethusd'] && <Chart
+              data={this.state['ethusd'].values}
+              pair="ETH/USD"
+          />}
+        </div>
       </div>
     );
   }
