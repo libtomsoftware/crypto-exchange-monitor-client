@@ -4,7 +4,7 @@ class Config {
             URL: {
                 API: 'http://localhost:4000/api'
             }
-        }
+        };
     }
 }
 
