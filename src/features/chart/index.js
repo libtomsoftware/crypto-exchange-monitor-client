@@ -10,9 +10,9 @@ class Chart extends Component {
         this.chartContainerId = `${props.pair}-chart-container`;
         this.state = {
             data: []
-        }
+        };
     }
-   
+
     componentDidMount() {
         this.createChart();
     }
@@ -29,7 +29,7 @@ class Chart extends Component {
                     return {
                         name: moment(entry.datetime).format('HH:mm:ss'),
                         y: parseFloat(entry.price, 10)
-                    }
+                    };
                 })
             });
         }
@@ -37,7 +37,7 @@ class Chart extends Component {
 
     componentWillUnmount() {
         this.chart.destroy();
-    };
+    }
 
     createChart() {
         this.chart = new Highcharts.Chart(this.chartContainerId, {
@@ -68,20 +68,19 @@ class Chart extends Component {
                 title: {
                     text: null
                 }
-            },           
+            },
             series: [{
                 showInLegend: false,
                 name: this.props.pair,
                 data: []
             }]
-            
         });
     }
 
     render() {
-        return <div className="chart">
-            <div id={this.chartContainerId}></div>            
-        </div>
+        return (<div className="chart">
+            <div id={this.chartContainerId}></div>
+        </div>);
     }
 }
 
