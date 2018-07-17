@@ -11,64 +11,64 @@ import './balances.css';
 const CONFIG = Config.CONSTANTS;
 
 class Balances extends Component {
-  constructor() {
-      super();
-      
-      this.state = {
-        modified: null,
-        positions: null
-      };
+    constructor() {
+        super();
 
-      this.update = this.update.bind(this);
-      this.init();
-  }
+        this.state = {
+            modified: null,
+            positions: null
+        };
 
-  get balancesRequest() {
-    return {
-      id: 'balances',
-      url: CONFIG.URL.API + '/balances',
-      success: this.update,
-      error: (error) => {
-        console.warn('err', error)
-      }
+        this.update = this.update.bind(this);
+        this.init();
     }
-  }
 
-  update(data) {
-    this.setState({
-      modified: data.modified,
-      positions: Object.keys(data.current).map((position) => {
+    get balancesRequest() {
         return {
-          currency: data.current[position].currency,
-          amount: data.current[position].amount
-        }
-      })
-    })
-  }
+            id: 'balances',
+            url: CONFIG.URL.API + '/balances',
+            success: this.update,
+            error: (error) => {
+                console.warn('err', error);
+            }
+        };
+    }
 
-  init() {
-    Http.get(this.balancesRequest).then(this.update);
-    Poller.run(this.balancesRequest, 30000);
-  }
+    update(data) {
+        this.setState({
+            modified: data.modified,
+            positions: Object.keys(data.current).map((position) => {
+                return {
+                    currency: data.current[position].currency,
+                    amount: data.current[position].amount
+                };
+            })
+        });
+    }
 
-  render() {
-    const positions = this.state.positions;
+    init() {
+        Http.get(this.balancesRequest).then(this.update);
+        Poller.run(this.balancesRequest, 30000);
+    }
 
-    return (
-      <section className="box balances">
-        <div className="balances-positions">
-          {positions && positions.length && positions.map((position, index) => {
-            return <Position
-                key={index}
-                currency={position.currency}
-                amount={position.amount}
-              />
-          })}
-        </div>
-        <BalancesModified modified={this.state.modified}/>
-      </section>
-    );
-  }
+    render() {
+        const positions = this.state.positions;
+
+        return (
+            <section className="box balances">
+                <div className="balances-positions">
+                    {positions && positions.length && positions.map((position, index) => {
+                        return <Position
+                            key={index}
+                            currency={position.currency}
+                            amount={position.amount}
+                        />;
+                    })}
+                </div>
+                <BalancesModified modified={this.state.modified}/>
+            </section>
+        );
+    }
 }
 
 export default Balances;

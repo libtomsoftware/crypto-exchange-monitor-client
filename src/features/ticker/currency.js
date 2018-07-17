@@ -20,7 +20,7 @@ export const Currency = (props) => {
     const currencyClassname = `currency-price delta-${props.delta}`;
 
     return <div className="box currency">
-        {formatCurrencyLabel(props.currency)} 
+        {formatCurrencyLabel(props.currency)}
         <span className={currencyClassname}>{formatCurrencyValue(props.price)}</span>
     </div>;
-}
+};
